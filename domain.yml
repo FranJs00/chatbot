@@ -1,0 +1,24 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - ask_person
+
+responses:
+  utter_greet:
+  - text: "Buenas"
+  - text: "Hola"
+
+  utter_goodbye:
+  - text: "Nos vemos"
+  - text: "Hasta luego"
+
+  utter_ask_person:
+  - text: "Todo bien, vos?"
+  - text: "Bien bien, y vos?"
+
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

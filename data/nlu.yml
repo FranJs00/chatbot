@@ -1,0 +1,28 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - buenas
+    - holaa
+    - que tal
+    - buen dia
+    - buenas tardes
+    - buenos dias
+
+- intent: goodbye
+  examples: |
+    - chau
+    - nos vemos
+    - hasta luego
+    - despues hablamos
+    - adios
+
+- intent: ask_person
+  examples: |
+    - como estas?
+    - como andas?
+    - que tal estas?
+    - estas bien?
+    - todo bien?
+    - como anduviste?
