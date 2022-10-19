@@ -5,9 +5,89 @@ stories:
 - story: greet path
   steps:
   - intent: greet
+  - action: action_get_tg_data
   - action: utter_greet
+
+
+- story: continue greet
+  steps:
+  - slot_was_set:
+    - surname_check: False
   - intent: ask_person
   - action: utter_ask_person
-  - intent: goodbye
-  - action: utter_goodbye
+  - intent: mood
+    entities:
+    - mood
+  - action: action_mood
 
+- story: affirm_surname
+  steps:
+  - slot_was_set:
+    - surname_check: True
+  - action: utter_ask_surname
+  - intent: fix_surname
+    entities:
+    - surname
+  - action: action_confirm_surname
+
+
+- story: ask_subjects
+  steps:
+  - intent: ask_subjects
+  - action: action_show_subjects
+  - action: action_handle_topics
+
+- story: ask_who_are
+  steps:
+  - intent: who_am_i
+  - action: utter_who_am_i
+
+- story: why_career
+  steps:
+  - intent: studying
+  - action: utter_studying
+  - action: action_handle_topics
+
+- story: chatbot_quests
+  steps:
+  - intent: chatbot_status
+    entities:
+    - actual_topic
+  - slot_was_set:
+    - actual_topic
+  - action: action_handle_topics
+  - action: utter_chatbot_status
+  - intent: bot_functionality
+  - action: utter_chatbot_functionality
+  - intent: chatbot_recommendations
+  - action: utter_chatbot_recommendations
+
+- story: what_doing
+  steps:
+  - intent: what_doing
+  - action: action_what_doing
+
+
+- story: meet
+  steps:
+  - intent: ask_meet
+  - action: utter_ask_meet
+  - intent: where_meet
+  - action: utter_where_meet
+  - intent: arrange_meet
+    entities:
+    - meet_hour
+  - action: action_check_availability
+
+- story: call_me
+  steps:
+  - intent: call_me
+  - action: utter_call_me
+  - action: action_who_is_talking
+
+- story: answer_call
+  steps:
+  - slot_was_set:
+    - was_called: True
+  - action: action_listen
+  - action: action_answer_someone

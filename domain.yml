@@ -1,22 +1,162 @@
 version: "3.1"
 
+entities:
+  - who_is_chatting
+  - surname
+  - actual_topic
+  - mood
+  - chatbot_rec
+  - meet_hour
+
+slots:
+  who_is_chatting:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: who_is_chatting
+  surname:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: surname
+  surname_check:
+    type: bool
+    initial_value: false
+    mappings:
+    - type: custom
+  actual_topic:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: actual_topic
+  mood:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: mood
+  was_called:
+    type: bool
+    initial_value: false
+    mappings:
+    - type: custom
+
 intents:
   - greet
   - goodbye
   - ask_person
+  - ask_subjects
+  - affirm
+  - deny
+  - fix_surname:
+      ignore_entities:
+        - who_is_chatting
+  - what_doing
+  - studying #studying
+  - chatbot_status
+  - bot_functionality # bot_functionality
+  - chatbot_recommendations #chatbot_recommendations
+  - what_do_you_like
+  - mood
+  - who_am_i
+  - ask_meet
+  - where_meet
+  - arrange_meet
+  - call_me
 
 responses:
   utter_greet:
   - text: "Buenas"
   - text: "Hola"
+  - text: "Como andamos?"
 
   utter_goodbye:
   - text: "Nos vemos"
   - text: "Hasta luego"
+  - text: "Dale, nos vemos"
+  - text: "Despues habalmos"
+
+  utter_ask_surname:
+  - text: "No me figura tu apellido... quien sos?"
 
   utter_ask_person:
   - text: "Todo bien, vos?"
   - text: "Bien bien, y vos?"
+  - text: "Todo tranquilo, vos que tal?"
+
+  utter_good_mood:
+  - text: "Me alegro!"
+  - text: "Que bueno"
+
+  utter_bad_mood:
+  - text: "Uy, sea lo que sea, espero que mejore"
+  - text: "Espero todo se pueda solucionar pronto y estes mejor"
+
+  utter_neutral_mood:
+  - text: "Espero no pase nada malo"
+
+  utter_already_know:
+  - text: "Hola de nuevo {who_is_chatting}"
+
+  utter_first_meet:
+  - text: "Un gusto conocerte {who_is_chatting}"
+
+  utter_default:
+  - text: "Mmm, no estoy seguro de eso"
+
+  utter_studying:
+  - text: "La realidad es que siempre me gusto la informatica, desde muy chico, entonces ya sabia medio lo que queria incluso desde primaria"
+  - text: "Siempre me intereso la computacion, en primaria habia decidido ya ir a la escuela tecnica con orientacion en informatica, entonces tuve todo medio claro del principio"
+  - text: "Cuando pude usar la primer pc que pusieron en casa, cuando tenia 4 años mas o menos, me encanto, ya empece a pasar muchas horas investigando y haciendo cosas, y poco a poco me interiorice mas"
+
+  utter_chatbot_status:
+  - text: "Bastante bien, admito que lo arranque un poco tarde pero trate de plantear varios escenarios que me imagine y aca estamos"
+  - text: "Bien, ya tengo varias mas ideas en mente para ir aplicando, pero este ultimo tiempo vine avanzando mas lento con nuevas cosas porque queria estabilizar mas lo que ya tenia"
+  - text: "La verdad que por ahora viene andando todo bastante bien, me gustaria si que haga algunas cosas mas pero ya las ire agregando de a poco"
+
+  utter_chatbot_functionality:
+  - text: "El bot te pregunta quien sos, y en base a tu nombre-apellido sabe si te conoce o no, tambien aplique algunas cosas con prolog, como las materias que curso y mi agenda"
+  - text: "Logre utilizar un poco prolog, para consultar las materias que curso y mi agenda diaria en general"
+  - text: "Pude implementar que el bot guarde tu nombre-apellido y la idea es lograr que almacene el ultimo tema que hablo con vos"
+
+  utter_chatbot_recommendations:
+  - text: "La verdad es que no se me habia ocurrido, pero voy a ver un poco sobre eso"
+  - text: "Mmm, no la pense, pero me lo voy a anotar y voy a ver que se puede hacer"
+
+  utter_who_am_i:
+  - text: "Vos me escribiste y no sabes quien soy? Soy Francisco"
+  - text: "Y... francisco, quien mas seria?"
+  - text: "Obvio que soy Fran"
+
+  utter_ask_meet:
+  - text: "Me parece bien"
+  - text: "Dale dale, hagamos algo"
+
+  utter_where_meet:
+  - text: "Dale, quedamos ahi"
+  - text: "Dale me gustaria"
+  - text: "Me parece bien"
+
+  utter_call_me:
+  - text: "Si, decime"
+  - text: "Que paso?"
+
+  
+
+
+
+
+actions:
+  - action_find_person
+  - action_show_subjects
+  - action_confirm_surname
+  - action_affirm_surname
+  - action_handle_topics
+  - action_what_doing
+  - action_mood
+  - action_get_tg_data
+  - action_check_availability
+  - action_who_is_talking
+  - action_answer_someone
 
 
 session_config:

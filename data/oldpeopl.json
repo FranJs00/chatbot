@@ -1,0 +1,23 @@
+{
+    "Enzo": {
+        "Heredia": {
+            "edad": 24,
+            "ultimo_tema": "prolog"
+        },
+        "Avalos": {
+            "edad": 22
+        },
+        "Fernandez": {}
+    },
+    "Francisco": {
+        "Mauri": {
+            "edad": 22
+        }
+    },
+    "Pedro": {
+        "Gomez": {}
+    },
+    "Matias": {
+        "Guerrero": {}
+    }
+}

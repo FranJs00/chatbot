@@ -2,3 +2,24 @@ version: "3.1"
 
 rules:
 
+- rule: Manejar el fallback
+  steps:
+  - intent: nlu_fallback
+  - action: utter_default
+
+- rule: Preguntar apellido siempre que no sea provisto por telegram
+  condition:
+  - slot_was_set:
+    - surname_check: True
+  steps:
+  - action: utter_greet
+  - action: utter_ask_surname
+
+- rule: answer_call
+  condition:
+  - slot_was_set:
+    - was_called: True
+  steps:
+  - action: action_listen
+  - action: action_answer_someone
+
