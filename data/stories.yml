@@ -20,6 +20,12 @@ stories:
     - mood
   - action: action_mood
 
+- story: goodbye
+  steps:
+  - intent: goodbye
+  - action: action_get_tg_data
+  - action: utter_goodbye
+
 - story: affirm_surname
   steps:
   - slot_was_set:
@@ -35,7 +41,6 @@ stories:
   steps:
   - intent: ask_subjects
   - action: action_show_subjects
-  - action: action_handle_topics
 
 - story: ask_who_are
   steps:
@@ -46,38 +51,51 @@ stories:
   steps:
   - intent: studying
   - action: utter_studying
-  - action: action_handle_topics
+
+- story: likes
+  steps:
+  - intent: what_do_you_like
+  - action: utter_what_do_you_like
 
 - story: chatbot_quests
   steps:
   - intent: chatbot_status
-    entities:
-    - actual_topic
-  - slot_was_set:
-    - actual_topic
-  - action: action_handle_topics
   - action: utter_chatbot_status
   - intent: bot_functionality
   - action: utter_chatbot_functionality
-  - intent: chatbot_recommendations
-  - action: utter_chatbot_recommendations
 
 - story: what_doing
   steps:
   - intent: what_doing
   - action: action_what_doing
 
+- story: info_wiki
+  steps:
+  - intent: info_topic
+    entities:
+    - actual_topic
+  - slot_was_set:
+    - actual_topic
+  - action: action_get_info
 
 - story: meet
   steps:
   - intent: ask_meet
   - action: utter_ask_meet
-  - intent: where_meet
-  - action: utter_where_meet
+  - intent: arrange_day
+    entities:
+    - meet_day
+  - action: utter_arrange_day
   - intent: arrange_meet
     entities:
     - meet_hour
   - action: action_check_availability
+
+- story: add_to_meet
+  steps:
+  - intent: add_to_meet
+  - action: action_add_to_meet
+
 
 - story: call_me
   steps:
@@ -91,3 +109,8 @@ stories:
     - was_called: True
   - action: action_listen
   - action: action_answer_someone
+
+- story: thanks
+  steps:
+  - intent: thanks
+  - action: utter_thanks

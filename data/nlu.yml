@@ -2,9 +2,7 @@ version: "3.1"
 
 nlu:
 
-- regex: meet_hour
-  examples: |
-   - \b([01][0-9]|2[0-3])\b
+
 
 - intent: greet
   examples: |
@@ -19,6 +17,7 @@ nlu:
     - holaaa
     - bueeenaaas
     - comoo va
+    - start
 
 - intent: mood
   examples: |
@@ -65,17 +64,17 @@ nlu:
 
 - intent: ask_subjects
   examples: |
-    - que materias estas [cursando]?{"entity": "actual_topic", "value": "subjects"}
-    - que estas [cursando]?{"entity": "actual_topic", "value": "subjects"}
-    - cuales andas [cursando] ahora?{"entity": "actual_topic", "value": "subjects"}
-    - que materias [cursas]?{"entity": "actual_topic", "value": "subjects"}
-    - en que [materias estas anotado]?{"entity": "actual_topic", "value": "subjects"}
-    - cuales son las que andas [cursando]?{"entity": "actual_topic", "value": "subjects"}
-    - [materias]{"entity": "actual_topic", "value": "subjects"}
-    - [cursas]{"entity": "actual_topic", "value": "subjects"}
-    - que [cursas]{"entity": "actual_topic", "value": "subjects"}
-    - cuales [cursas]{"entity": "actual_topic", "value": "subjects"}
-    - [materias] cursando{"entity": "actual_topic", "value": "subjects"}
+    - que materias estas cursando?
+    - que estas cursando?
+    - cuales andas cursando ahora?
+    - que materias cursas?
+    - en que materias estas anotado?
+    - cuales son las que andas cursando?
+    - materias
+    - cursas
+    - que cursas
+    - cuales cursas
+    - materias cursando
 
 
 - intent: affirm
@@ -87,6 +86,9 @@ nlu:
     - efectivamente
     - por supuesto
     - confirmo
+    - si claro
+    - si si si
+
 
 - intent: deny
   examples: |
@@ -115,40 +117,43 @@ nlu:
 
 - intent: what_do_you_like
   examples: |
-    - que te [gusta]{"entity": "actual_topic", "value": "hobby"}?
-    - que son las [cosas que te gustan]{"entity": "actual_topic", "value": "hobby"}?
-    - que te suele [gustar hacer]{"entity": "actual_topic", "value": "hobby"}?
-    - que te [gusta hacer]{"entity": "actual_topic", "value": "hobby"}?
-    - tenes alguna [preferencia por algo]{"entity": "actual_topic", "value": "hobby"}?
-    - cuales son las [cosas que te gustan]{"entity": "actual_topic", "value": "hobby"}?
-    - cuales son tus [hobbies]{"entity": "actual_topic", "value": "hobby"}?
-    - tenes algun [hobby]{"entity": "actual_topic", "value": "hobby"}?
-    - que haces en tu [tiempo libre]{"entity": "actual_topic", "value": "hobby"}?
+    - que te gusta?
+    - que son las cosas que te gustan?
+    - que te suele gustar hacer?
+    - que te gusta hacer?
+    - tenes alguna preferencia por algo?
+    - cuales son las cosas que te gustan?
+    - cuales son tus hobbies?
+    - tenes algun hobby?
+    - que haces en tu tiempo libre?
+    - que te gusta hacer en tu tiempo libre?
+
 
 
 - intent: studying
   examples: |
-    - te gusta la carrera que estas [estudiando]{"entity": "actual_topic", "value": "studying"}?
-    - que te gusta de la [carrera]{"entity": "actual_topic", "value": "studying"}?
-    - estas contento de haber [elegido ingenieria]{"entity": "actual_topic", "value": "studying"}?
-    - que te parece lo que estas [estudiando]{"entity": "actual_topic", "value": "studying"}?
-    - sos feliz en esta [carrera]{"entity": "actual_topic", "value": "studying"}?
-    - hasta ahora te va gustando la [carrera]{"entity": "actual_topic", "value": "studying"}?
+    - te gusta la carrera que estas estudiando?
+    - que te parece lo que estas estudiando?
+    - hasta ahora te va gustando la carrera?
     - por que estudias esta carrera?
     - que haces estudiando esta carrera?
     - que haces estudiando ingenieria?
     - por que estudias ingenieria?
 
 
+
 - intent: chatbot_status
   examples: |
-    - como sentis que venis con el [chatbot]{"entity": "actual_topic", "value": "chatbot"}?
-    - que tal te va con el [proyecto]{"entity": "actual_topic", "value": "chatbot"}?
-    - venis bien con el [chatbot]{"entity": "actual_topic", "value": "chatbot"}?
-    - en que estado esta el [chatbot]{"entity": "actual_topic", "value": "chatbot"}?
-    - me podrias hablar del [chatbot]{"entity": "actual_topic", "value": "chatbot"}?
-    - hablame un poco de tu [bot]{"entity": "actual_topic", "value": "chatbot"}
-    - estuviste trabajando en el [bot]?{"entity": "actual_topic", "value": "chatbot"}
+    - como sentis que venis con el chatbot?
+    - que tal te va con el proyecto?
+    - venis bien con el chatbot?
+    - en que estado esta el chatbot?
+    - me podrias hablar del chatbot?
+    - hablame un poco de tu bot
+    - estuviste trabajando en el bot?
+    - como te fue con el bot?
+    - como te fue con el chatbot?
+    - como te fue con el proyecto?
 
 - intent: bot_functionality
   examples: |
@@ -158,9 +163,12 @@ nlu:
     - me podrias decir que hace el bot?
     - que pudiste implementar con el bot?
     - hasta donde llegaste con el bot?
+    - que funcionalidades tiene el bot?
+    - que funcionalidades tiene el chatbot?
 
 
-- intent: who_am_u
+
+- intent: who_am_i
   examples: |
     - quien sos
     - quien sos?
@@ -169,17 +177,8 @@ nlu:
     - como te llamas?
     - cual es tu nombre?
     - quien sos vos?
+    - quien sos vos
 
-
-- intent: chatbot_recommendations
-  examples: |
-    - por que no usaste mas [intents](chatbot_rec)?
-    - y para esa funcionalidad podrias haber usado [actions](chatbot_rec)
-    - que te parece si usabas [form](chatbot_rec) para lograr eso
-    - te recomendaria que veas como funcionan los [slots](chatbot_rec) para eso
-    - fijate de agregarle mas cosas al [nlu](chatbot_rec)
-    - estaria bueno que puedas usar los [form](chatbot_rec)
-    - trata de implementar alguna [api] de telegram(chatbot_rec)
 
 - intent: what_doing
   examples: |
@@ -190,6 +189,10 @@ nlu:
     - ahora que vas a hacer?
     - estas libre
     - que haces
+    - que estas haciendo
+    - que estas haciendo ahora
+    - que haces ahora
+
 
 
 - intent: ask_meet
@@ -205,25 +208,65 @@ nlu:
     - estudiemos juntos un rato
     - salgamos a dar una vuelta
     - vayamos a algun lado
+    - hagamos alguna reunion
+    - nos reunimos?
+    - reunion
+    - nos juntamos
 
-- intent: where_meet
+- intent: thanks
   examples: |
-    - te parece si nos encontramos en casa y de ahi vemos?
-    - te parece que vaya a tu casa entonces?
-    - dale, nos vemos en la plaza
-    - que tal si nos encontramos en la plaza
-    - podriamos ver donde encontrarnos, te parece ir a algun cafe?
-    - nos vemos cerca del dique dale
+    - gracias
+    - muchas gracias
+    - mil gracias
+    - graaaciaas
+    - dalee graciaas
+    - gracias por todo
 
+- regex: meet_hour
+  examples: |
+   - \b([01][0-9]|2[0-3])\b
 
 - intent: arrange_meet
   examples: |
     - Te parece si a las [20] hacemos algo?(meet_hour)
-    - Nos vemos mañana a las [15] dale?(meet_hour)
+    - Nos vemos a las [15] dale?(meet_hour)
     - Que tal de ir a las [21](meet_hour)
     - Podriamos ir tarde, tipo [19](meet_hour)
     - Me parece que si nos juntamos a las [14] estaria buenisimo(meet_hour)
     - que te parece a las [17] entonces?(meet_hour)
+    - a las [8](meet_hour)
+    - [19](meet_hour)
+
+- intent: arrange_day
+  examples: |
+    - Quedamos [mañana](meet_day) entonces?
+    - Te parece [mañana](meet_day)?
+    - Te parece el [lunes](meet_day)?
+    - Que tal [hoy](meet_day)?
+    - el [lunes](meet_day)
+    - el [martes](meet_day)
+
+- intent: add_to_meet
+  examples: |
+    - Agregame a la reunion
+    - Yo me uno
+    - Yo
+    - Agregame
+    - Yo voy
+    - Voy a estar
+    
+
+- lookup: meet_day
+  examples: |
+    - hoy
+    - mañana
+    - lunes
+    - martes
+    - miercoles
+    - jueves
+    - viernes
+    - sabado
+    - domingo
 
 - intent: call_me
   examples: |
@@ -235,3 +278,31 @@ nlu:
     - Che Fran una preguntita
     - Francisco
     - Fran
+
+- intent: info_topic
+  examples: |
+    - Bueno ahora podemos discutir sobre [telegram]{"entity": "actual_topic", "value": "telegram"}
+    - Discutamos sobre [inteligencia artificial]{"entity": "actual_topic", "value": "inteligencia_artificial"}
+    - Que sabes acerca de [chatbot]{"entity": "actual_topic", "value": "chatbot"}
+    - Sabes algo de [robots]{"entity": "actual_topic", "value": "robotica"}
+    - Que crees acerca de [robocup]{"entity": "actual_topic", "value": "chatbot"}
+    - Vamos a hablar un poco sobre [ia]{"entity": "actual_topic", "value": "inteligencia_artificial"}
+    - Charlemos de [prolog]{"entity": "actual_topic", "value": "prolog"}
+    - Dame informacion sobre [prolog]{"entity": "actual_topic", "value": "prolog"}
+    - Decime algo sobre [telegram]{"entity": "actual_topic", "value": "telegram"}
+
+- lookup: actual_topic
+  examples: |
+    - robotica
+    - robocup
+    - prolog
+    - informatica
+    - programacion
+    - programacion logica
+    - logica difusa
+    - algoritmos
+    - machine learning
+    - bases de datos
+    - inteligencia artificial
+    - chatbot
+    - telegram
