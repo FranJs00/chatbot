@@ -159,12 +159,8 @@ agenda('jueves', 9, 17, 'cursando').
 agenda('viernes', 9, 11, 'cursando').
 agenda('viernes', 19, 22, 'entrenando').
 
-agenda('sabado', 0, 5, 'libre').
-agenda('sabado', 12, 24, 'libre').
-agenda('domingo', 12, 24, 'libre').
 
 actividades('cursando').
-actividades('libre').
 actividades('entrenando').
 
 
