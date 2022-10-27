@@ -6,6 +6,7 @@ rules:
   steps:
   - intent: nlu_fallback
   - action: utter_default
+  - action: action_listen
 
 - rule: Preguntar apellido siempre que no sea provisto por telegram
   condition:
