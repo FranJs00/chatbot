@@ -5,8 +5,8 @@ entities:
   - surname
   - actual_topic
   - mood
-  - chatbot_rec
   - meet_hour
+  - meet_day
 
 slots:
   who_is_chatting:
@@ -14,31 +14,52 @@ slots:
     mappings:
       - type: from_entity
         entity: who_is_chatting
-  surname:
-    type: text
-    mappings:
-      - type: from_entity
-        entity: surname
+
   surname_check:
     type: bool
     initial_value: false
     mappings:
     - type: custom
+
   actual_topic:
     type: text
     mappings:
       - type: from_entity
         entity: actual_topic
+
   mood:
     type: text
     mappings:
       - type: from_entity
         entity: mood
+
   was_called:
     type: bool
     initial_value: false
     mappings:
     - type: custom
+
+  meet_day:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: meet_day
+
+  meet_hour:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: meet_hour
+
+  message_id:
+    type: text
+    mappings:
+      - type: custom
+
+  event_id:
+    type: text
+    mappings:
+      - type: custom
 
 intents:
   - greet
@@ -51,29 +72,31 @@ intents:
       ignore_entities:
         - who_is_chatting
   - what_doing
-  - studying #studying
+  - studying
   - chatbot_status
-  - bot_functionality # bot_functionality
-  - chatbot_recommendations #chatbot_recommendations
+  - bot_functionality 
   - what_do_you_like
   - mood
   - who_am_i
   - ask_meet
-  - where_meet
   - arrange_meet
   - call_me
+  - arrange_day
+  - info_topic
+  - add_to_meet
+  - thanks
 
 responses:
   utter_greet:
-  - text: "Buenas"
-  - text: "Hola"
-  - text: "Como andamos?"
+  - text: "Buenas {who_is_chatting}"
+  - text: "Hola {who_is_chatting}"
+  - text: "Como andamos {who_is_chatting}?"
 
   utter_goodbye:
-  - text: "Nos vemos"
-  - text: "Hasta luego"
-  - text: "Dale, nos vemos"
-  - text: "Despues habalmos"
+  - text: "Nos vemos {who_is_chatting}"
+  - text: "Hasta luego {who_is_chatting}"
+  - text: "Dale, nos vemos {who_is_chatting}"
+  - text: "Despues habalmos {who_is_chatting}"
 
   utter_ask_surname:
   - text: "No me figura tu apellido... quien sos?"
@@ -101,7 +124,9 @@ responses:
   - text: "Un gusto conocerte {who_is_chatting}"
 
   utter_default:
-  - text: "Mmm, no estoy seguro de eso"
+  - text: "Voy a ser sincero, soy un bot y eso no te entendi"
+  - text: "Te voy a decir la verdad... soy un bot y eso no lo entendi"
+  - text: "Disculpa pero no me entrenaron para entender eso"
 
   utter_studying:
   - text: "La realidad es que siempre me gusto la informatica, desde muy chico, entonces ya sabia medio lo que queria incluso desde primaria"
@@ -111,35 +136,41 @@ responses:
   utter_chatbot_status:
   - text: "Bastante bien, admito que lo arranque un poco tarde pero trate de plantear varios escenarios que me imagine y aca estamos"
   - text: "Bien, ya tengo varias mas ideas en mente para ir aplicando, pero este ultimo tiempo vine avanzando mas lento con nuevas cosas porque queria estabilizar mas lo que ya tenia"
-  - text: "La verdad que por ahora viene andando todo bastante bien, me gustaria si que haga algunas cosas mas pero ya las ire agregando de a poco"
+  - text: "La verdad que por ahora viene andando todo bastante bien, creo que logre hacer las cosa que tenia en mente asi que estoy bastante satisfecho"
 
   utter_chatbot_functionality:
-  - text: "El bot te pregunta quien sos, y en base a tu nombre-apellido sabe si te conoce o no, tambien aplique algunas cosas con prolog, como las materias que curso y mi agenda"
+  - text: "El bot puede reconocer quien sos sabiendo de quien viene el mensaje gracias a telegram, tambien permite agendar reuniones y poder discutir de algun tema en un grupo"
   - text: "Logre utilizar un poco prolog, para consultar las materias que curso y mi agenda diaria en general"
-  - text: "Pude implementar que el bot guarde tu nombre-apellido y la idea es lograr que almacene el ultimo tema que hablo con vos"
-
-  utter_chatbot_recommendations:
-  - text: "La verdad es que no se me habia ocurrido, pero voy a ver un poco sobre eso"
-  - text: "Mmm, no la pense, pero me lo voy a anotar y voy a ver que se puede hacer"
 
   utter_who_am_i:
   - text: "Vos me escribiste y no sabes quien soy? Soy Francisco"
   - text: "Y... francisco, quien mas seria?"
   - text: "Obvio que soy Fran"
 
-  utter_ask_meet:
-  - text: "Me parece bien"
-  - text: "Dale dale, hagamos algo"
+  utter_what_do_you_like:
+  - text: "Disfruto pasar mi tiempo programando o jugando en general"
+  - text: "Por lo general me gusta bastante jugar con amigos"
+  - text: "Suelo pasar mi tiempo libre programando o leyendo muchas veces"
 
-  utter_where_meet:
-  - text: "Dale, quedamos ahi"
-  - text: "Dale me gustaria"
-  - text: "Me parece bien"
+  utter_ask_meet:
+  - text: "Me parece bien, cuando?"
+  - text: "Dale dale, hagamos algo, que dia?"
 
   utter_call_me:
   - text: "Si, decime"
   - text: "Que paso?"
 
+  utter_repeated:
+  - text: "Me parece que ya hablamos de esto"
+  - text: "Acabaste de decirme lo mismo jaja"
+
+  utter_arrange_day:
+  - text: "Dale, decime a que hora"
+
+  utter_thanks:
+  - text: "De nada!"
+  - text: "De nada"
+  
   
 
 
@@ -157,6 +188,9 @@ actions:
   - action_check_availability
   - action_who_is_talking
   - action_answer_someone
+  - action_make_meeting
+  - action_get_info
+  - action_add_to_meet
 
 
 session_config:
