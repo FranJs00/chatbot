@@ -2,7 +2,7 @@ import requests
 
 class TelegramAPI():
     def __init__(self):
-        self.token = "5672897381:AAHE_iiMCRd79V1_WJO-pI-2g0C9Qr7cAJc"
+        self.token = {BOT_TOKEN}
         self.url = f"https://api.telegram.org/bot{self.token}/"
 
     def sendMessage(self, chat_id, text, **kwargs):
