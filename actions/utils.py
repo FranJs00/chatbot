@@ -2,7 +2,7 @@ import json
 from typing import List
 import datetime
 
-DAYS = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'doming']
+DAYS = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo']
 
 class JsonManager():
 
@@ -32,7 +32,7 @@ class JsonManager():
         self.saveJson(self.data)
 
     def getDataByKey(self, id, keyData):
-        data = self.data.get(str(id))
+        data = self.data.get(str(id), None)
         if not data:
             return
         
@@ -60,5 +60,21 @@ class TimeManager():
 
     def getHour(self):
         return self.getNowDate().hour
+
+    def getDayByName(self, day):
+        now = self.getNowDate()
+        today = self.getDay()
+        if day == "hoy":
+            return now.day
+        if day == "mañana":
+            return (now + datetime.timedelta(days=1)) + 1
+        if (today == day):
+            return (now + datetime.timedelta(days=7)).day
+        else:
+            difference = DAYS.index(day) - now.weekday()
+            if (difference < 0):
+                difference += 7
+            return (now + datetime.timedelta(difference)).day
+
 
 
